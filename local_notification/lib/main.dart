@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest_10y.dart';
+import 'package:timezone/timezone.dart';
 
 FlutterLocalNotificationsPlugin notificationPlugin =
     FlutterLocalNotificationsPlugin();
@@ -47,6 +49,20 @@ class MyApp extends StatelessWidget {
 
     notificationPlugin.show(0, 'flutter notification',
         'local flutter notification', combinedDetails);
+
+    //To schedule the notification
+
+    DateTime scheduleDate = DateTime.now().add(Duration(seconds: 200));
+    notificationPlugin.zonedSchedule(
+        0,
+        'schedule notification',
+        'this is schedule notification',
+        TZDateTime.local(1).add(const Duration(seconds: 10)),
+        combinedDetails,
+        // uiLocalNotificationDateInterpretation: true,
+        androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.wallClockTime);
   }
 
   @override
