@@ -9,6 +9,8 @@ FlutterLocalNotificationsPlugin notificationPlugin =
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  initializeTimeZones();
+
   // initializating setting for anroid
   AndroidInitializationSettings anroidSetting =
       AndroidInitializationSettings('logo');
@@ -52,17 +54,17 @@ class MyApp extends StatelessWidget {
 
     //To schedule the notification
 
-    DateTime scheduleDate = DateTime.now().add(Duration(seconds: 200));
+    DateTime scheduleDate = DateTime.now().add(Duration(seconds: 2));
     notificationPlugin.zonedSchedule(
-        0,
-        'schedule notification',
-        'this is schedule notification',
-        TZDateTime.local(1).add(const Duration(seconds: 10)),
-        combinedDetails,
-        // uiLocalNotificationDateInterpretation: true,
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.wallClockTime);
+      0,
+      'schedule notification',
+      'this is schedule notification',
+      TZDateTime.from(scheduleDate, local),
+      combinedDetails,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.wallClockTime,
+    );
   }
 
   @override
@@ -87,11 +89,6 @@ class MyApp extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(Icons.notifications_active),
                   label: Text('scheduled notification')),
-              SizedBox(height: 20),
-              ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.notifications),
-                  label: Text('remove notification'))
             ],
           ),
         ),
