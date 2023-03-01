@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_10y.dart';
 import 'package:timezone/timezone.dart';
+import 'package:notification1/notification.dart';
 
 FlutterLocalNotificationsPlugin notificationPlugin =
     FlutterLocalNotificationsPlugin();
@@ -34,39 +35,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // function that triggers when button is pressed
-  void showNotification() {
-    AndroidNotificationDetails anroidDetails = AndroidNotificationDetails(
-        'notifications', 'flutter local notification',
-        priority: Priority.max, importance: Importance.max);
-
-    DarwinNotificationDetails iosDetails = DarwinNotificationDetails(
-      presentAlert: true,
-      presentSound: true,
-      presentBadge: true,
-    );
-
-    NotificationDetails combinedDetails =
-        NotificationDetails(android: anroidDetails, iOS: iosDetails);
-
-    notificationPlugin.show(0, 'flutter notification',
-        'local flutter notification', combinedDetails);
-
-    //To schedule the notification
-
-    DateTime scheduleDate = DateTime.now().add(Duration(seconds: 2));
-    notificationPlugin.zonedSchedule(
-      0,
-      'schedule notification',
-      'this is schedule notification',
-      TZDateTime.from(scheduleDate, local),
-      combinedDetails,
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.wallClockTime,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -86,7 +54,7 @@ class MyApp extends StatelessWidget {
                   label: Text('simple notification')),
               SizedBox(height: 20),
               ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: showScheduleNotification,
                   icon: Icon(Icons.notifications_active),
                   label: Text('scheduled notification')),
             ],
