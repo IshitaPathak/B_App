@@ -12,8 +12,8 @@ void main() async {
 
   initializeTimeZones();
 
-  // initializating setting for anroid
-  AndroidInitializationSettings anroidSetting =
+  // initializating setting for android
+  AndroidInitializationSettings androidSetting =
       AndroidInitializationSettings('logo');
 
   // initialization setting for ios
@@ -22,7 +22,7 @@ void main() async {
 
   // combined iniialized setting
   InitializationSettings initializationSettings =
-      InitializationSettings(android: anroidSetting, iOS: iosSetting);
+      InitializationSettings(android: androidSetting, iOS: iosSetting);
 
   bool? initialized =
       await notificationPlugin.initialize(initializationSettings);

@@ -3,7 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_10y.dart';
 import 'package:timezone/timezone.dart';
 
-void showNotification() {
+NotificationDetails getnotificationDetails() {
   AndroidNotificationDetails anroidDetails = AndroidNotificationDetails(
       'notifications', 'flutter local notification',
       priority: Priority.max, importance: Importance.max);
@@ -17,23 +17,17 @@ void showNotification() {
   NotificationDetails combinedDetails =
       NotificationDetails(android: anroidDetails, iOS: iosDetails);
 
+  return combinedDetails;
+}
+
+void showNotification() {
+  NotificationDetails combinedDetails = getnotificationDetails();
   notificationPlugin.show(
       0, 'flutter notification', 'local flutter notification', combinedDetails);
 }
 
 void showScheduleNotification() {
-  AndroidNotificationDetails anroidDetails = AndroidNotificationDetails(
-      'notifications', 'flutter local notification',
-      priority: Priority.max, importance: Importance.max);
-
-  DarwinNotificationDetails iosDetails = DarwinNotificationDetails(
-    presentAlert: true,
-    presentSound: true,
-    presentBadge: true,
-  );
-
-  NotificationDetails combinedDetails =
-      NotificationDetails(android: anroidDetails, iOS: iosDetails);
+  NotificationDetails combinedDetails = getnotificationDetails();
 
   //To schedule the notification
 
