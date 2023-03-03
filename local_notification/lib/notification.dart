@@ -5,8 +5,11 @@ import 'package:timezone/timezone.dart';
 
 NotificationDetails getnotificationDetails() {
   AndroidNotificationDetails anroidDetails = AndroidNotificationDetails(
-      'notifications', 'flutter local notification',
-      priority: Priority.max, importance: Importance.max);
+      'ishita-notification-channelID', 'noti_Ishita',
+      playSound: true,
+      sound: RawResourceAndroidNotificationSound('notification'),
+      priority: Priority.max,
+      importance: Importance.max);
 
   DarwinNotificationDetails iosDetails = DarwinNotificationDetails(
     presentAlert: true,
