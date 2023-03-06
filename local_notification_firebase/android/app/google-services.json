@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "570126104263",
+    "project_id": "notification-edbe3",
+    "storage_bucket": "notification-edbe3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570126104263:android:6c3d4aabe45fe0939030e2",
+        "android_client_info": {
+          "package_name": "com.example.local_notification_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570126104263-plqp311e23lf5d2a7b55602jiaaa8gmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0z_RVAWGmPZ1aMnXI4HOAEKC9FexQEA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570126104263-plqp311e23lf5d2a7b55602jiaaa8gmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
