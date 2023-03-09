@@ -3,43 +3,31 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:local_notification_firebase/home.dart';
-
-// Initializing notification channel for android
-const AndroidNotificationChannel channels = AndroidNotificationChannel(
-    'flutter firebase notification id',
-    'flutter firebase notification name title',
-// 'this channel is used for all important notification',//description
-    importance: Importance.max,
-    playSound: true);
-
-// Intilizing flutter local notification
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-
-// this is top-level function to handle background message
-// It just initializes the firebase app once the notification
-// is received when the app is in background
-Future<void> _firebaseMessagingBackgoroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  // ignore: avoid_print
-  print('Background message is showed up');
-}
+import 'package:local_notification_firebase/notification.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgoroundHandler);
+  FirebaseMessaging.onBackgroundMessage(BackgoroundHandler);
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channels);
 
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true, //required to display a heads up notification
-    badge: true,
-    sound: true,
-  );
+  var initializationSettingAndroid =
+      AndroidInitializationSettings('@drawable/logo');
+  var initializationSetting =
+      InitializationSettings(android: initializationSettingAndroid);
+
+  // // for iOS Configuration
+  // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+  //   alert: true, //required to display notification on device
+  //   badge: true, //for indicator purpose
+  //   sound: true,
+  // );
+
+  FirebaseMessaging.onMessage.listen(ForegroundHandler);
   runApp(const MyApp());
 }
 

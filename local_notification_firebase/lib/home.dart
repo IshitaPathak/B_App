@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:local_notification_firebase/main.dart';
+import 'package:local_notification_firebase/notification.dart';
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -13,20 +13,24 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   void initState() {
+    // flutterLocalNotificationsPlugin.initialize(initializationSetting);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {
+        AndroidNotificationDetails androidNotificationDetails =
+            AndroidNotificationDetails(channels.id, channels.name,
+                importance: Importance.max,
+                priority: Priority.high,
+                groupKey: channels.groupId);
+
+        NotificationDetails platformSpecificNotificationDetails =
+            NotificationDetails(android: androidNotificationDetails);
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
             notification.body,
-            NotificationDetails(
-                android: AndroidNotificationDetails(channels.id, channels.name,
-                    channelDescription: 'welcome',
-                    color: Colors.red,
-                    playSound: true,
-                    icon: '@mipmap/ic_launcher')));
+            platformSpecificNotificationDetails);
       }
     });
 
@@ -60,21 +64,22 @@ class _homeState extends State<home> {
       ),
       body: ElevatedButton.icon(
           onPressed: () {
-            flutterLocalNotificationsPlugin.show(
-                0,
-                'notification title',
-                'welcome to the app',
-                NotificationDetails(
-                    android: AndroidNotificationDetails(
-                        channels.id, channels.name,
-                        channelDescription: 'hiiiiiii welcome',
-                        importance: Importance.max,
-                        color: Colors.red,
-                        playSound: true,
-                        icon: '@mipmap/ic_launcher')));
+            groupNotification();
+            // flutterLocalNotificationsPlugin.show(
+            //     0,
+            //     'notification title',
+            //     'welcome to the app',
+            //     NotificationDetails(
+            //         android: AndroidNotificationDetails(
+            //             channels.id, channels.name,
+            //             channelDescription: 'hiiiiiii welcome',
+            //             importance: Importance.max,
+            //             color: Colors.red,
+            //             playSound: true,
+            //             icon: '@drawable/logo')));
           },
           icon: Icon(Icons.notifications),
-          label: Text('Notification')),
+          label: Text('Subscribe')),
     );
   }
 }
