@@ -13,27 +13,6 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   void initState() {
-    // flutterLocalNotificationsPlugin.initialize(initializationSetting);
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      RemoteNotification? notification = message.notification;
-      AndroidNotification? android = message.notification?.android;
-      if (notification != null && android != null) {
-        AndroidNotificationDetails androidNotificationDetails =
-            AndroidNotificationDetails(channels.id, channels.name,
-                importance: Importance.max,
-                priority: Priority.high,
-                groupKey: channels.groupId);
-
-        NotificationDetails platformSpecificNotificationDetails =
-            NotificationDetails(android: androidNotificationDetails);
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            platformSpecificNotificationDetails);
-      }
-    });
-
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('onmessaged opened app is trigered');
       RemoteNotification? notification = message.notification;
@@ -64,7 +43,7 @@ class _homeState extends State<home> {
       ),
       body: ElevatedButton.icon(
           onPressed: () {
-            groupNotification();
+            FirebaseNotification();
             // flutterLocalNotificationsPlugin.show(
             //     0,
             //     'notification title',

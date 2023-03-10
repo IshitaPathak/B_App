@@ -10,15 +10,15 @@ Future<void> main() async {
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(BackgoroundHandler);
 
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channels);
+  // await flutterLocalNotificationsPlugin
+  //     .resolvePlatformSpecificImplementation<
+  //         AndroidFlutterLocalNotificationsPlugin>()
+  //     ?.createNotificationChannel(channels);
 
-  var initializationSettingAndroid =
-      AndroidInitializationSettings('@drawable/logo');
-  var initializationSetting =
-      InitializationSettings(android: initializationSettingAndroid);
+  // var initializationSettingAndroid =
+  //     AndroidInitializationSettings('@drawable/logo');
+  // var initializationSetting =
+  //     InitializationSettings(android: initializationSettingAndroid);
 
   // // for iOS Configuration
   // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
@@ -28,6 +28,9 @@ Future<void> main() async {
   // );
 
   FirebaseMessaging.onMessage.listen(ForegroundHandler);
+
+  // final fcmToken = await FirebaseMessaging.instance.getToken();
+  // print(fcmToken);
   runApp(const MyApp());
 }
 
