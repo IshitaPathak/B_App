@@ -61,13 +61,13 @@ class _HomeState extends State<Home> {
                 children: [
                   ElevatedButton(
                       onPressed: () {
-                        SubscribeTopic1('topic1');
+                        SubscribeTopic1();
                       },
                       child: Text('topic1')),
                   SizedBox(width: 20),
                   ElevatedButton(
                       onPressed: () {
-                        SubscribeTopic2('topic2');
+                        SubscribeTopic2();
                       },
                       child: Text('topic2'))
                 ],

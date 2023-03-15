@@ -43,6 +43,8 @@ class FirebaseNotification {
     await Firebase.initializeApp();
     FirebaseMessaging.onBackgroundMessage(BackgoroundHandler);
 
+    FirebaseMessaging.onMessage.listen(ForegroundHandler);
+
     // await flutterLocalNotificationsPlugin
     //     .resolvePlatformSpecificImplementation<
     //         AndroidFlutterLocalNotificationsPlugin>()

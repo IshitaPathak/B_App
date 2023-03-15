@@ -34,17 +34,19 @@ class NotificationServices {
   }
 }
 
-void SubscribeTopic1(String topic) async {
+void SubscribeTopic1() async {
   await FirebaseMessaging.instance
-      .subscribeToTopic(topic)
-      .then((value) => print('$topic is subscried'));
+      .subscribeToTopic('topic1')
+      .then((value) => print('topic1 is subscried'));
+  await FirebaseMessaging.instance.unsubscribeFromTopic('topic2');
   NotificationServices();
 }
 
-void SubscribeTopic2(String topic) async {
+void SubscribeTopic2() async {
   await FirebaseMessaging.instance
-      .subscribeToTopic(topic)
-      .then((value) => print('$topic is subscried'));
+      .subscribeToTopic('topic2')
+      .then((value) => print('topic2 is subscried'));
+  await FirebaseMessaging.instance.unsubscribeFromTopic('topic1');
   NotificationServices();
 }
 //note -
