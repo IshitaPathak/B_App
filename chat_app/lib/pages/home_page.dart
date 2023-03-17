@@ -18,6 +18,6 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   authService.signOut();
                 },
-                child: Text("Log Out"))));
+                child: const Text("Log Out"))));
   }
 }
