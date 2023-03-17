@@ -1,0 +1,5 @@
+add firebase to android
+web
+firebase.initializeApp(); --> this will only work android and ios
+for web
+firebase.initializeApp(options:)
