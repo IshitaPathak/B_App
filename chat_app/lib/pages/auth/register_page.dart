@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/services/auth_services.dart';
 import 'package:flutter/gestures.dart';
@@ -31,20 +33,21 @@ class _RegisterPageState extends State<RegisterPage> {
                     color: Theme.of(context).primaryColor))
             : SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 22, vertical: 83),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 22, vertical: 83),
                   child: Form(
                     key: formKey,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Community',
                             style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 6),
-                          Text(
+                          const SizedBox(height: 6),
+                          const Text(
                             "Create your account now clear all your doubts",
                             style: TextStyle(
                                 fontSize: 13, fontWeight: FontWeight.normal),
@@ -58,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               onChanged: (value) {
                                 setState(() {
                                   fullname = value;
-                                  print(fullname);
+                                  debugPrint(fullname);
                                 });
                               },
                               //checking the validation
@@ -69,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   return null;
                                 }
                               }),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           TextFormField(
                             decoration: textInputDecoration.copyWith(
                                 labelText: "Email",
@@ -80,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             onChanged: (value) {
                               setState(() {
                                 email = value;
-                                print(email);
+                                debugPrint(email);
                               });
                             },
                             // checking the validation
@@ -90,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   : null;
                             },
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           TextFormField(
                             obscureText: true,
                             decoration: textInputDecoration.copyWith(
@@ -102,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             onChanged: (value) {
                               setState(() {
                                 password = value;
-                                print(password);
+                                debugPrint(password);
                               });
                             },
                             validator: (value) {
@@ -113,12 +116,13 @@ class _RegisterPageState extends State<RegisterPage> {
                               }
                             },
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    primary: Theme.of(context).primaryColor,
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
                                     elevation: 0,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
@@ -126,29 +130,29 @@ class _RegisterPageState extends State<RegisterPage> {
                                 onPressed: () {
                                   register();
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Register",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 15),
                                 )),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text.rich(TextSpan(
                               text: "Already have an account? ",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
                               ),
                               children: <TextSpan>[
                                 TextSpan(
                                     text: "Login Now",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 15,
                                         decoration: TextDecoration.underline),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        nextScreen(context, LoginPage());
+                                        nextScreen(context, const LoginPage());
                                       }),
                               ]))
                         ]),
@@ -170,9 +174,9 @@ class _RegisterPageState extends State<RegisterPage> {
           await HelperFunction.savedUserLoggedInStatus(true);
           await HelperFunction.savedUserEmail(email);
           await HelperFunction.savedUserName(fullname);
-          nextScreenReplace(context, HomePage());
+          nextScreenReplace(context, const HomePage());
         } else {
-          showSnackBar(context, Color(0xFFee7b64), value);
+          showSnackBar(context, const Color(0xFFee7b64), value);
           setState(() {
             _isLoading = false;
           });

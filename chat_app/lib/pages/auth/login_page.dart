@@ -22,19 +22,19 @@ class _LoginPageState extends State<LoginPage> {
         // ),
         body: SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 22, vertical: 83),
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 83),
         child: Form(
           key: formKey,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Community',
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 6),
-                Text(
+                const SizedBox(height: 6),
+                const Text(
                   "Login now to don't miss any opportunities",
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
                 ),
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                   onChanged: (value) {
                     setState(() {
                       email = value;
-                      print(email);
+                      debugPrint(email);
                     });
                   },
                   // checking the validation
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                         : null;
                   },
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 TextFormField(
                   obscureText: true,
                   decoration: textInputDecoration.copyWith(
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                   onChanged: (value) {
                     setState(() {
                       password = value;
-                      print(password);
+                      debugPrint(password);
                     });
                   },
                   validator: (value) {
@@ -82,40 +82,40 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: Theme.of(context).primaryColor,
+                          backgroundColor: Theme.of(context).primaryColor,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(26))),
                       onPressed: () {
                         login();
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign In",
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       )),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text.rich(TextSpan(
                     text: "Don't have an account? ",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
                     ),
                     children: <TextSpan>[
                       TextSpan(
                           text: "Register here",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 15,
                               decoration: TextDecoration.underline),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              nextScreen(context, RegisterPage());
+                              nextScreen(context, const RegisterPage());
                             }),
                     ]))
               ]),

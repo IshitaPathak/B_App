@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -22,7 +23,7 @@ void main() async {
     await Firebase.initializeApp();
   }
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -36,7 +37,6 @@ class _MyAppState extends State<MyApp> {
   bool isSignedIn = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // getUserLoggedInStatus();
   }
@@ -59,7 +59,10 @@ class _MyAppState extends State<MyApp> {
           primaryColor: Constants().primaryColor,
           scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
-      home: isSignedIn ? HomePage() : LoginPage(),
+      // home: isSignedIn ? const HomePage() : const LoginPage(),
+      home: FirebaseAuth.instance.currentUser != null
+          ? const HomePage()
+          : const LoginPage(),
     );
   }
 }

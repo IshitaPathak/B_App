@@ -23,10 +23,10 @@ void showSnackBar(context, color, message) {
     SnackBar(
       content: Text(
         message,
-        style: TextStyle(fontSize: 14),
+        style: const TextStyle(fontSize: 14),
       ),
       backgroundColor: color,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       action: SnackBarAction(
           label: "OK", onPressed: () {}, textColor: Colors.white),
     ),
