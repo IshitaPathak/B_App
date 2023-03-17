@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:chat_app/helper/helper_function.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:chat_app/services/databse_services.dart';
 
@@ -28,4 +29,15 @@ class Authservices {
   }
 
   //signuout function
+  Future signOut() async {
+    try {
+      await HelperFunction.savedUserLoggedInStatus(false);
+      await HelperFunction.savedUserEmail("");
+      await HelperFunction.savedUserName("");
+
+      await firebaseAuth.signOut();
+    } catch (e) {
+      return null;
+    }
+  }
 }

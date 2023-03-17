@@ -38,22 +38,22 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUserLoggedInStatus();
-  }
-
-  getUserLoggedInStatus() async {
-    await HelperFunction.getUserLoggedInStatus().then((value) => {
-          if (value != null)
-            {
-              setState(() {
-                isSignedIn = value;
-              }),
-            }
-        });
+    // getUserLoggedInStatus();
   }
 
   @override
   Widget build(BuildContext context) {
+    getUserLoggedInStatus() async {
+      await HelperFunction.getUserLoggedInStatus().then((value) => {
+            if (value != null)
+              {
+                setState(() {
+                  isSignedIn = value;
+                }),
+              }
+          });
+    }
+
     return MaterialApp(
       theme: ThemeData(
           primaryColor: Constants().primaryColor,

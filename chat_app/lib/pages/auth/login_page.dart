@@ -54,11 +54,9 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   // checking the validation
                   validator: (value) {
-                    return RegExp(
-                                "^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")
-                            .hasMatch(value!)
-                        ? null
-                        : "Please enter a valid email";
+                    return value!.isEmpty || !value.contains('@')
+                        ? 'Please enter the valid email'
+                        : null;
                   },
                 ),
                 SizedBox(height: 15),
