@@ -5,6 +5,7 @@ import 'package:chat_app/shared/constants.dart';
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/helper/helper_function.dart';
 import 'package:chat_app/pages/auth/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,23 +44,26 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    getUserLoggedInStatus() async {
-      await HelperFunction.getUserLoggedInStatus().then((value) => {
-            if (value != null)
-              {
-                setState(() {
-                  isSignedIn = value;
-                }),
-              }
-          });
-    }
+    // getUserLoggedInStatus() async {
+    //   await HelperFunction.getUserLoggedInStatus().then((value) => {
+    //         if (value != null)
+    //           {
+    //             setState(() {
+    //               isSignedIn = value;
+    //             }),
+    //           }
+    //       });
+    // }
 
     return MaterialApp(
       theme: ThemeData(
           primaryColor: Constants().primaryColor,
           scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
-      home: isSignedIn ? HomePage() : LoginPage(),
+      // home: isSignedIn ? HomePage() : LoginPage(),
+      home: FirebaseAuth.instance.currentUser != null
+          ? const HomePage()
+          : const LoginPage(),
     );
   }
 }

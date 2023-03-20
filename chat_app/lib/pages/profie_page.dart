@@ -1,62 +1,32 @@
 import 'package:chat_app/pages/auth/login_page.dart';
-import 'package:chat_app/pages/serach_page.dart';
+import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/services/auth_services.dart';
 import 'package:chat_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/pages/profie_page.dart';
-import 'package:chat_app/helper/helper_function.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ProfilePage extends StatefulWidget {
+  String userName;
+  String email;
+  ProfilePage({Key? key, required this.email, required this.userName})
+      : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  String userName = "";
-  String email = "";
+class _ProfilePageState extends State<ProfilePage> {
   Authservices authService = Authservices();
-
-  @override
-  void initState() {
-    super.initState();
-    gettingUserData();
-  }
-
-  gettingUserData() async {
-    await HelperFunction.getUserEmailFromSP().then((value) {
-      setState(() {
-        email = value!;
-      });
-    });
-    await HelperFunction.getuserNameFromSP().then((value) {
-      setState(() {
-        userName = value!;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {
-                  nextScreen(context, SearchPage());
-                },
-                icon: Icon(Icons.search))
-          ],
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          title: const Text(
-            "Groups",
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 28),
-          ),
-        ),
+            backgroundColor: Theme.of(context).primaryColor,
+            elevation: 0,
+            title: Text("Profile",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 27,
+                    fontWeight: FontWeight.bold))),
         drawer: Drawer(
             child: ListView(
                 padding: const EdgeInsets.symmetric(vertical: 50),
@@ -64,16 +34,23 @@ class _HomePageState extends State<HomePage> {
               Icon(Icons.account_circle, size: 150, color: Colors.grey[700]),
               SizedBox(height: 16),
               Text(
-                userName,
+                // In the context of a Flutter widget, the widget keyword is used to access the properties or
+                //variables defined in the widget's parent class. So, in the ProfilePage class, if a variable userName
+                //is defined in the parent class (i.e., the widget that contains ProfilePage), then it can be accessed
+                //using widget.userName.
+                // If userName is not defined in the parent class, then it cannot be accessed using widget.userName.
+                // In that case, userName would need to be defined directly in the ProfilePage class in order to be
+                //accessed without using widget.
+                widget.userName,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 30),
               const Divider(height: 2),
               ListTile(
-                  onTap: () {},
-                  selectedColor: Theme.of(context).primaryColor,
-                  selected: true,
+                  onTap: () {
+                    nextScreen(context, HomePage());
+                  },
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   leading: Icon(Icons.group),
@@ -84,8 +61,14 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                   onTap: () {
                     nextScreen(
-                        context, ProfilePage(userName: userName, email: email));
+                        context,
+                        ProfilePage(
+                          email: 'email',
+                          userName: 'userName',
+                        ));
                   },
+                  selectedColor: Theme.of(context).primaryColor,
+                  selected: true,
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   leading: Icon(Icons.person),
@@ -135,6 +118,35 @@ class _HomePageState extends State<HomePage> {
                     "LogOut",
                     style: TextStyle(color: Colors.black),
                   ))
-            ])));
+            ])),
+        body: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 180),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.account_circle,
+                size: 200,
+                color: Colors.grey[700],
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Full Name", style: TextStyle(fontSize: 17)),
+                  Text(widget.userName, style: TextStyle(fontSize: 17)),
+                ],
+              ),
+              Divider(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Email", style: TextStyle(fontSize: 17)),
+                  Text(widget.email, style: TextStyle(fontSize: 17))
+                ],
+              )
+            ],
+          ),
+        ));
   }
 }
