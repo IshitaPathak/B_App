@@ -134,7 +134,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Full Name", style: TextStyle(fontSize: 17)),
-                  Text(widget.userName, style: TextStyle(fontSize: 17)),
+                  Text(widget.userName,
+                      style: TextStyle(fontSize: 17, color: Colors.black)),
                 ],
               ),
               Divider(height: 20),
@@ -142,7 +143,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Email", style: TextStyle(fontSize: 17)),
-                  Text(widget.email, style: TextStyle(fontSize: 17))
+                  Text(widget.email,
+                      style: TextStyle(fontSize: 17, color: Colors.black))
                 ],
               )
             ],
