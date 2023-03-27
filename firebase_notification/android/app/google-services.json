@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "444020981723",
+    "project_id": "fir-notify-ddd9c",
+    "storage_bucket": "fir-notify-ddd9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444020981723:android:cdfc81da9e9502017eb1fe",
+        "android_client_info": {
+          "package_name": "com.ishita.firebase_notification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444020981723-kikl4u24v74nolmm5oj0m2trvmln8fju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApRePx9kNntO0SWWatPXFBYkb37ovuivw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444020981723-kikl4u24v74nolmm5oj0m2trvmln8fju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
