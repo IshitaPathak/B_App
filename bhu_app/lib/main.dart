@@ -1,3 +1,5 @@
+import 'package:bhu_app/pages/hostel_details.dart';
+import 'package:bhu_app/pages/student_details.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:bhu_app/pages/home.dart';
@@ -26,6 +28,8 @@ class App extends StatelessWidget {
         '/about': (context) => AboutUs(),
         '/contact': (context) => ContactUs(),
         '/data': (context) => MyData(),
+        '/student': (context) => Student_Details(),
+        '/hostel': (context) => Hostel_Details(),
       },
     );
   }

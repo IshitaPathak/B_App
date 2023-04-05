@@ -2,9 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:bhu_app/pages/home.dart';
 import 'package:bhu_app/pages/about.dart';
 import 'package:bhu_app/pages/contact.dart';
+import 'package:flutter/services.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // loadData();
+  }
+
+  // loadData() async {
+  //   var jsondata = await rootBundle.loadString("assets/data.json");
+  //   print(jsondata);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +96,23 @@ class Home extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/contact');
               },
-              child: Text('Contact Us'))
+              child: Text('Contact Us')),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/student');
+              },
+              child: Text('Student Details')),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/hostel');
+              },
+              child: Text('Hostel Details'))
         ],
       ),
     );
