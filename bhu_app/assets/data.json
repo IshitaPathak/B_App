@@ -1,0 +1,31 @@
+{
+    "hostel_detail": [
+        {
+            "name":"HOstel 1",
+            "course":"BSc",
+            "number of rooms":23,
+            "price per room": 234
+        },
+        {
+            "name":"HOstel 2",
+            "course":"BA",
+            "number of rooms":73,
+            "price per room": 834
+        }
+    ],
+    
+    "student_details":[
+        {
+            "name":"Ishita Pathak",
+            "email":"ishita@gmail.com",
+            "mobile no":3232323232,
+            "course":"BSc"
+        },
+        {
+            "name":"Radhika Pathak",
+            "email":"radhika@gmail.com",
+            "mobile no":94343467678,
+            "course":"BA"
+        }
+    ]
+}

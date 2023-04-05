@@ -168,7 +168,8 @@ class _HomePageState extends State<HomePage> {
         barrierDismissible: false,
         context: context,
         builder: (context) {
-          return AlertDialog(
+          return StatefulBuilder(builder: ((context, setState) {
+            return AlertDialog(
               title: Text(
                 "Create a group",
                 textAlign: TextAlign.center,
@@ -234,7 +235,9 @@ class _HomePageState extends State<HomePage> {
                     child: Text("CREATE"),
                     style: ElevatedButton.styleFrom(
                         primary: Theme.of(context).primaryColor)),
-              ]);
+              ],
+            );
+          }));
         });
   }
 
@@ -246,7 +249,12 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.hasData) {
           if (snapshot.data['groups'] != null) {
             if (snapshot.data['groups'].length != 0) {
-              return Text('HIiiiiiiiiiiiiiiiii');
+              return ListView.builder(
+                itemCount: snapshot.data['groups'].length,
+                itemBuilder: (context, index) {
+                  return Text("Hello");
+                },
+              );
             } else {
               return noGroupWidget();
             }
